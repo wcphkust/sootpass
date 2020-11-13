@@ -1,0 +1,17 @@
+If you would like to run the example:
+(1) First, enter the command mode, and enter into the directory of Profiler project and compile the file;
+cd Profiler
+javac -cp lib/soot-4.0.0.jar -d bin src/*
+
+(2) Second, run the following commands to instrument the sample program:
+java -cp bin;lib/soot-4.0.0.jar MainDriver TestInvoke
+
+Then,  it will generate a directory named sootOutput
+
+(3) Third, run the instrumented program by the following command:
+java -cp bin;sootOutput TestInvoke
+
+NOTE: on Unix-based systems use ":" instead of ";" to separate items in classpath. So the above command should be:
+javac -cp lib/soot-4.0.0.jar -d bin src/*
+java -cp bin:lib/soot-4.0.0.jar MainDriver TestInvoke
+java -cp bin:sootOutput TestInvoke
