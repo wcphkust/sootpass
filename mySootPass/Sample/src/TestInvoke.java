@@ -3,8 +3,8 @@ public class TestInvoke {
 	public void methodA(){
 		Data d = new Data("Something");
 		use(d);
-		d = null;
-		use(d);
+//		d = null;
+//		use(d);
 	}
 
 	public void methodB(Data param){

@@ -1,6 +1,10 @@
 package containerSnapshot;
 
 import soot.*;
+import soot.baf.*;
+import soot.baf.internal.*;
+import soot.dava.internal.javaRep.DAssignStmt;
+import soot.jimple.internal.JAssignStmt;
 
 import java.util.Map;
 
@@ -18,7 +22,10 @@ public class ContainerSnapshot extends BodyTransformer {
 //                }
 //            }
             unitCnt++;
-            System.out.println(unit);
+            if (unit instanceof JAssignStmt) {
+                System.out.println(unit);
+            }
+            //System.out.println(unit);
         }
         System.out.println(sm.getName() + ":" + unitCnt);
     }
