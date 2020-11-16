@@ -21,8 +21,10 @@ public class ContainerSnapshotEntry {
 
 		/*Profile the container usage in applications*/
 		jtp.add(new Transform("jtp.containerSnapshot", new ContainerSnapshot()));
+		Snapshot snapshot = new Snapshot();
 		sootArg[0] = "-process-dir";
 		sootArg[1] = "../mySootPass/Sample/application";
 		soot.Main.main(sootArg);
+		Snapshot.printToFile();
 	}
 }
