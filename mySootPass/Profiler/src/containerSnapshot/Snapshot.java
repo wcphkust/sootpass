@@ -1,7 +1,5 @@
 package containerSnapshot;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -9,7 +7,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class Snapshot {
-    public static List<String> containerTypes;
+    public static HashSet<String> containerTypes;
     public static HashMap<String, singleSnapshot> containerSnapshotMap;
     public static int hitCount;
 
@@ -36,12 +34,10 @@ public class Snapshot {
             for (HashMap.Entry<String, Integer> methodCountPair: methodCountMap.entrySet()) {
                 data.put(methodCountPair.getKey(), methodCountPair.getValue());
             }
-            JSONArray dataList = new JSONArray();
-            dataList.add(data);
 
             System.out.println(System.getProperty("user.dir"));
             try (FileWriter file = new FileWriter(System.getProperty("user.dir") + File.separator + "Profiler/output/" + containerName + "Snapshot.json")) {
-                file.write(dataList.toJSONString());
+                file.write(data.toString(4));
                 file.flush();
 
             } catch (IOException e) {
@@ -51,15 +47,32 @@ public class Snapshot {
     }
 
     public Snapshot() {
-        containerTypes = new ArrayList<>();
+        containerTypes = new HashSet<>();
+        containerTypes.add("LinkedList");
+        containerTypes.add("ArrayList");
         containerTypes.add("Vector");
         containerTypes.add("Stack");
+        containerTypes.add("List");
+        containerTypes.add("ArrayDeque");
+        containerTypes.add("Queue");
+
+        containerTypes.add("PriorityQueue");
+        containerTypes.add("EnumSet");
+        containerTypes.add("HashSet");
+        containerTypes.add("LinkedHashSet");
+        containerTypes.add("TreeSet");
+
+        containerTypes.add("EnumMap");
+        containerTypes.add("TreeMap");
         containerTypes.add("HashMap");
-        //TODO
+        containerTypes.add("WeakHashMap");
+        containerTypes.add("LinkedHashMap");
+        containerTypes.add("IdentityHashMap");
+        containerTypes.add("HashTable");
 
         containerSnapshotMap = new HashMap<>();
-        for (String str : containerTypes) {
-            containerSnapshotMap.put(str, new singleSnapshot());
+        for (String containerName : containerTypes) {
+            containerSnapshotMap.put(containerName, new singleSnapshot());
         }
         hitCount = 0;
     }
@@ -71,8 +84,10 @@ public class Snapshot {
     }
 
     public static void printToFile() {
-        JSONArray dataList = new JSONArray();
+        JSONObject dataList = new JSONObject();
+        int containerid = 0;
         for (String str : containerTypes) {
+            containerid++;
             JSONObject data = new JSONObject();
             JSONObject snapshotdata = new JSONObject();
             singleSnapshot snapshot = containerSnapshotMap.get(str);
@@ -80,12 +95,12 @@ public class Snapshot {
                 snapshotdata.put(methodCountPair.getKey(), methodCountPair.getValue());
             }
             data.put(str, snapshotdata);
-            dataList.add(data);
+            dataList.put((new Integer(containerid)).toString(), data);
         }
 
         System.out.println(System.getProperty("user.dir"));
         try (FileWriter file = new FileWriter(System.getProperty("user.dir") + File.separator + "Profiler/output/FullSnapshot.json")) {
-            file.write(dataList.toJSONString());
+            file.write(dataList.toString(4));
             file.flush();
 
         } catch (IOException e) {

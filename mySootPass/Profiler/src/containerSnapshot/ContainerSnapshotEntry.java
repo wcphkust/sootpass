@@ -22,8 +22,8 @@ public class ContainerSnapshotEntry {
 		/*Profile the container usage in applications*/
 		jtp.add(new Transform("jtp.containerSnapshot", new ContainerSnapshot()));
 		Snapshot snapshot = new Snapshot();
-		sootArg[0] = "-process-dir";
-		sootArg[1] = "../mySootPass/Sample/application";
+		sootArg[0] = "-process-path";
+		sootArg[1] = "../mySootPass/Sample/application/ode4j/core/target/classes";
 		soot.Main.main(sootArg);
 		Snapshot.printToFile();
 	}

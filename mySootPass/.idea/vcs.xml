@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$/.." vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Sample/application/ode4j" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Sample/application/ode4j/ode4j" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Sample/container/ode4j" vcs="Git" />
   </component>
 </project>

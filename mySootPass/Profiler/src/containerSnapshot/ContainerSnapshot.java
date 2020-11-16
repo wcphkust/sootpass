@@ -18,8 +18,12 @@ public class ContainerSnapshot extends BodyTransformer {
         }
         String subExprStr = exprStr.substring(index1, index2);
         String className = subExprStr.substring(0, subExprStr.indexOf(":"));
-        String methodName = subExprStr.substring(subExprStr.indexOf(":") + 1);
+        String methodName = subExprStr.substring(subExprStr.indexOf(":") + 2);
+        if (methodName.contains("<init>")) {
+            return;
+        }
 
+        System.out.println("className " + className);
         if (className.contains("Vector")) {
             Snapshot.hitContainerMethod("Vector", methodName);
         } else if (className.contains("Stack")) {

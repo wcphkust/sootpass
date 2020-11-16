@@ -1,1 +1,25 @@
-[{"Vector":{" java.lang.Object get(int)":1," void <init>()":2," boolean add(java.lang.Object)":3," java.lang.Object lastElement()":2}},{"Stack":{}},{"HashMap":{}}]
+{
+    "11": {"Stack": {}},
+    "12": {"LinkedHashMap": {}},
+    "13": {"TreeSet": {}},
+    "14": {"List": {}},
+    "15": {"Vector": {
+        "boolean add(java.lang.Object)": 3,
+        "java.lang.Object lastElement()": 2,
+        "java.lang.Object get(int)": 1
+    }},
+    "16": {"Queue": {}},
+    "17": {"EnumMap": {}},
+    "18": {"HashSet": {}},
+    "19": {"WeakHashMap": {}},
+    "1": {"LinkedHashSet": {}},
+    "2": {"HashTable": {}},
+    "3": {"HashMap": {}},
+    "4": {"EnumSet": {}},
+    "5": {"IdentityHashMap": {}},
+    "6": {"ArrayList": {}},
+    "7": {"PriorityQueue": {}},
+    "8": {"TreeMap": {}},
+    "9": {"LinkedList": {}},
+    "10": {"ArrayDeque": {}}
+}
